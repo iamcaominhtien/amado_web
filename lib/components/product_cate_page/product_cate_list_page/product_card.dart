@@ -10,7 +10,10 @@ class ProductCart extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Image.asset('assets/product_img/product${index + 1}.jpg'),
+        Image.asset(
+          'assets/product_img/product${index + 1}.jpg',
+          width: double.infinity,
+        ),
         const SizedBox(
           height: 20,
         ),

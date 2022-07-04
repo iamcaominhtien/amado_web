@@ -16,85 +16,117 @@ class ProductCateListPage extends StatefulWidget {
 class _ProductCateListPageState extends State<ProductCateListPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 70, left: 15, right: 100, bottom: 50),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'SHOWING 1-8 0F 25',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Flex(
-            direction:
-                Responsive.isDesktop(context) ? Axis.horizontal : Axis.vertical,
-            mainAxisAlignment: Responsive.isDesktop(context)
-                ? MainAxisAlignment.spaceBetween
-                : MainAxisAlignment.start,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Padding(
+          padding: EdgeInsets.only(
+              top: constraints.maxWidth > 375 ? 70 : 15,
+              left: 15,
+              right: Responsive.isDesktop(context)
+                  ? 100
+                  : constraints.maxWidth <= 375
+                      ? 15
+                      : 50,
+              bottom: 50),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              const Text(
+                'SHOWING 1-8 0F 25',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Flex(
+                direction: Responsive.isDesktop(context)
+                    ? Axis.horizontal
+                    : Axis.vertical,
+                mainAxisAlignment: Responsive.isDesktop(context)
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.start,
                 children: [
-                  MyButtonIcon(
-                    onPressed: () {},
-                    isClicked: true,
-                    child: Image.asset(
-                      'assets/icon/four_square.png',
-                      color: Colors.white,
-                      width: 20,
-                    ),
+                  Row(
+                    children: [
+                      MyButtonIcon(
+                        onPressed: () {},
+                        isClicked: true,
+                        child: Image.asset(
+                          'assets/icon/four_square.png',
+                          color: Colors.white,
+                          width: 20,
+                        ),
+                      ),
+                      MyButtonIcon(
+                        child: const Icon(
+                          Icons.menu,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {},
+                      )
+                    ],
                   ),
-                  MyButtonIcon(
-                    child: const Icon(
-                      Icons.menu,
-                      color: Colors.white,
+                  if (!Responsive.isDesktop(context))
+                    const SizedBox(
+                      height: 20,
                     ),
-                    onPressed: () {},
+                  Flex(
+                    direction: constraints.maxWidth > 394
+                        ? Axis.horizontal
+                        : Axis.vertical,
+                    mainAxisAlignment: constraints.maxWidth > 394
+                        ? MainAxisAlignment.spaceBetween
+                        : MainAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: constraints.maxWidth > 394
+                        ? CrossAxisAlignment.center
+                        : CrossAxisAlignment.stretch,
+                    children: const [
+                      MyDropDownMenu(
+                        label: 'Sort by',
+                        item: [12, 24, 48, 96],
+                      ),
+                      SizedBox(
+                        width: 15,
+                        height: 10,
+                      ),
+                      MyDropDownMenu(
+                        label: 'Sort by',
+                        item: ['Date', 'Newest', 'Popular'],
+                      ),
+                    ],
                   )
                 ],
               ),
-              if (!Responsive.isDesktop(context))
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: AlignedGridView.count(
+                  crossAxisCount: Responsive.isDesktop(context) ||
+                          (580 < constraints.maxWidth &&
+                              constraints.maxWidth < 692)
+                      ? 2
+                      : 1,
+                  mainAxisSpacing: 50,
+                  crossAxisSpacing: 20,
+                  itemCount: 6,
+                  itemBuilder: (context, index) {
+                    return ProductCart(index: index);
+                  },
+                ),
+              ),
+              if (constraints.maxWidth < 890)
                 const SizedBox(
                   height: 20,
                 ),
-              Row(
-                children: const [
-                  MyDropDownMenu(
-                    label: 'Sort by',
-                    item: [12, 24, 48, 96],
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  MyDropDownMenu(
-                    label: 'Sort by',
-                    item: ['Date', 'Newest', 'Popular'],
-                  ),
-                ],
-              )
+              const PageNavigation(),
             ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(
-            child: AlignedGridView.count(
-              crossAxisCount: Responsive.isDesktop(context) ? 2 : 1,
-              mainAxisSpacing: 50,
-              crossAxisSpacing: 20,
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return ProductCart(index: index);
-              },
-            ),
-          ),
-          const PageNavigation(),
-        ],
-      ),
+        );
+      },
     );
   }
 }

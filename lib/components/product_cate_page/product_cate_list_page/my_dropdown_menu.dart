@@ -16,55 +16,59 @@ class MyDropDownMenu extends StatefulWidget {
 class _MyDropDownMenuState extends State<MyDropDownMenu> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xFFF5F7FA),
-      padding: const EdgeInsets.symmetric(
-        vertical: 8,
-        horizontal: 15,
-      ),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          minWidth: 120,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              widget.label,
-              style: const TextStyle(
-                fontSize: 15,
-                color: Color(0xFF9595AB),
-              ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Container(
+          color: const Color(0xFFF5F7FA),
+          padding: const EdgeInsets.symmetric(
+            vertical: 8,
+            horizontal: 15,
+          ),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minWidth: 120,
             ),
-            const SizedBox(
-              width: 15,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  widget.label,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    color: Color(0xFF9595AB),
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                DropdownButton(
+                  isDense: true,
+                  elevation: 0,
+                  value: widget.item[0],
+                  items: widget.item
+                      .map(
+                        (e) => DropdownMenuItem(
+                          value: e,
+                          child: Text(
+                            e.toString(),
+                            style: const TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {},
+                  underline: const SizedBox(),
+                  icon: const Icon(
+                    Icons.keyboard_arrow_down_sharp,
+                    size: 15,
+                  ),
+                ),
+              ],
             ),
-            DropdownButton(
-              isDense: true,
-              elevation: 0,
-              value: widget.item[0],
-              items: widget.item
-                  .map(
-                    (e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(
-                        e.toString(),
-                        style: const TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  )
-                  .toList(),
-              onChanged: (value) {},
-              underline: const SizedBox(),
-              icon: const Icon(
-                Icons.keyboard_arrow_down_sharp,
-                size: 15,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

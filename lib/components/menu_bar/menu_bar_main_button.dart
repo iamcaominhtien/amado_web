@@ -14,24 +14,29 @@ class MenuBarMainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverText(
-      child: Padding(
-        padding: EdgeInsets.only(
-          bottom: isMenuBar ? 10 : 0,
-          right: isMenuBar ? 0 : 5,
-          left: isMenuBar ? 0 : 5,
-        ),
-        child: TextButton(
-          onPressed: () {},
-          child: Text(
-            label.toUpperCase(),
-            style: TextStyle(
-              color: colorText,
-              fontSize: 17,
+    return LayoutBuilder(
+      builder: (p0, p1) {
+        // debugPrint("Menubarmain: ${p1.maxWidth}");
+        return HoverText(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: isMenuBar ? 10 : 0,
+              right: isMenuBar ? 0 : 5,
+              left: isMenuBar ? 0 : 5,
+            ),
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                label.toUpperCase(),
+                style: TextStyle(
+                  color: colorText,
+                  fontSize: p1.maxWidth > 300 ? 17 : 15,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

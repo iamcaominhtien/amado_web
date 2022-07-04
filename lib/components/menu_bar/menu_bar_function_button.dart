@@ -13,22 +13,26 @@ class MenuBarFuncButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: color,
-      child: MaterialButton(
-        onPressed: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+    return LayoutBuilder(
+      builder: (p0, p1) {
+        return Material(
+          color: color,
+          child: MaterialButton(
+            onPressed: onPressed,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: p1.maxWidth > 300 ? 17 : 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
