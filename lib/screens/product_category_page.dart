@@ -14,58 +14,62 @@ class ProductCatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            //Body
-            BodyPage(
-              indexPage: false,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Column(
-                      children: const [
-                        SizedBox(
-                          height: 1000,
-                          child: MenuBar(),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                //Body
+                BodyPage(
+                  indexPage: false,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Column(
+                          children: const [
+                            SizedBox(
+                              height: 1000,
+                              child: MenuBar(),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      color: const Color(0xFFFAFAFA),
-                      child: Column(
-                        children: const [
-                          SizedBox(
-                            height: 1300,
-                            child: CateBrandMenuBar(),
-                          ),
-                        ],
                       ),
-                    ),
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          color: const Color(0xFFFAFAFA),
+                          child: Column(
+                            children: const [
+                              SizedBox(
+                                height: 1300,
+                                child: CateBrandMenuBar(),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: Responsive.isDesktop(context)
+                            ? 7
+                            : Responsive.isTabletLargest(context)
+                                ? 4
+                                : 3,
+                        child: const ProductCateListPage(),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    flex: Responsive.isDesktop(context)
-                        ? 7
-                        : Responsive.isTabletLargest(context)
-                            ? 4
-                            : 3,
-                    child: const ProductCateListPage(),
-                  ),
-                ],
-              ),
+                ),
+                //Discount
+                const Discount(),
+                //FootPage
+                const FootPage(),
+              ],
             ),
-            //Discount
-            const Discount(),
-            //FootPage
-            const FootPage(),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
