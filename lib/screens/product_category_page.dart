@@ -34,7 +34,7 @@ class _ProductCatePageState extends State<ProductCatePage> {
                 Container(
                   color: Colors.white,
                   height: 800,
-                  child: const MenuBar(),
+                  child: const MenuBar(drawer: true),
                 ),
               ],
             ),

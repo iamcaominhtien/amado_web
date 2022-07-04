@@ -8,7 +8,9 @@ import 'menu_bar_main_button.dart';
 class MenuBar extends StatelessWidget {
   const MenuBar({
     Key? key,
+    this.drawer = false,
   }) : super(key: key);
+  final bool drawer;
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +19,16 @@ class MenuBar extends StatelessWidget {
         debugPrint(constraints.maxWidth.toString());
         return Padding(
           padding: EdgeInsets.only(
-              top: constraints.maxWidth > 300 ? 30 : 0,
+              top: drawer == false ? 30 : 0,
               bottom: 30,
               left: constraints.maxWidth > 300 ? 60 : 30,
               right: constraints.maxWidth > 300 ? 60 : 30),
-          // padding: EdgeInsets.symmetric(
-          //   horizontal: constraints.maxWidth > 300 ? 60 : 30,
-          //   vertical: 30,
-          // ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              if (constraints.maxWidth <= 300)
+              if (drawer == true)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
