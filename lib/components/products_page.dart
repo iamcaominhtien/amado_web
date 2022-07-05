@@ -22,7 +22,11 @@ class _ProductsPageState extends State<ProductsPage> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: EdgeInsets.only(
+        bottom: 20,
+        left: Responsive.isMobile(context) ? 15 : 0,
+        right: Responsive.isMobile(context) ? 15 : 0,
+      ),
       child: MasonryGridView.count(
         crossAxisCount: Responsive.isDesktop(context)
             ? 3

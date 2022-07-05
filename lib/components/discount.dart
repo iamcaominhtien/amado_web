@@ -74,28 +74,62 @@ class Discount extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const Flexible(
+                        Flexible(
                           child: SizedBox(
-                            width: 300,
+                            width: 350,
                             child: TextField(
                               decoration: InputDecoration(
-                                  fillColor: Colors.white,
-                                  filled: true,
-                                  border: InputBorder.none,
-                                  hintText: "Your email"),
+                                contentPadding: const EdgeInsets.only(
+                                  left: 10,
+                                  right: 10,
+                                  top: 15,
+                                ),
+                                isDense: true,
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: InputBorder.none,
+                                hintText: "Your email",
+                                suffixIcon: Material(
+                                  color: Colors.orange,
+                                  child: MaterialButton(
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 15, horizontal: 8),
+                                      child: Text(
+                                        'Subscribe',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                                // suffix: Material(
+                                //   color: Colors.orange,
+                                //   child: Padding(
+                                //     padding: EdgeInsets.symmetric(vertical: 10),
+                                //     child: MaterialButton(
+                                //       child: Text(
+                                //         'Subscribe',
+                                //         style: TextStyle(color: Colors.black),
+                                //       ),
+                                //       onPressed: () {},
+                                //     ),
+                                //   ),
+                                // ),
+                              ),
                             ),
                           ),
                         ),
-                        Material(
-                          color: Colors.orange,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                            child: MaterialButton(
-                              child: const Text('Subcribe'),
-                              onPressed: () {},
-                            ),
-                          ),
-                        )
+                        // Material(
+                        //   color: Colors.orange,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.symmetric(vertical: 10),
+                        //     child: MaterialButton(
+                        //       child: const Text('Subscribe'),
+                        //       onPressed: () {},
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     ),
                   ),

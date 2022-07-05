@@ -16,6 +16,7 @@ class ExtraMenuBarButton extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 25),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Image.asset('assets/core_img/$img'),
               const SizedBox(
