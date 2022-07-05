@@ -3,8 +3,11 @@ import 'package:amado_web/services/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'list_view_product_card.dart';
 import 'my_dropdown_menu.dart';
 import 'product_card.dart';
+
+bool listViewProduct = false;
 
 class ProductCateListPage extends StatefulWidget {
   const ProductCateListPage({Key? key}) : super(key: key);
@@ -51,7 +54,11 @@ class _ProductCateListPageState extends State<ProductCateListPage> {
                   Row(
                     children: [
                       MyButtonIcon(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            listViewProduct = false;
+                          });
+                        },
                         isClicked: true,
                         child: Image.asset(
                           'assets/icon/four_square.png',
@@ -64,7 +71,12 @@ class _ProductCateListPageState extends State<ProductCateListPage> {
                           Icons.menu,
                           color: Colors.white,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          // debugPrint("Click");
+                          setState(() {
+                            listViewProduct = true;
+                          });
+                        },
                       )
                     ],
                   ),
@@ -103,21 +115,24 @@ class _ProductCateListPageState extends State<ProductCateListPage> {
               const SizedBox(
                 height: 20,
               ),
-              Expanded(
-                child: AlignedGridView.count(
-                  crossAxisCount: Responsive.isDesktop(context) ||
-                          (580 < constraints.maxWidth &&
-                              constraints.maxWidth < 692)
-                      ? 2
-                      : 1,
-                  mainAxisSpacing: 50,
-                  crossAxisSpacing: 20,
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return ProductCart(index: index);
-                  },
-                ),
-              ),
+              !listViewProduct
+                  ? Expanded(
+                      child: AlignedGridView.count(
+                        crossAxisCount: Responsive.isDesktop(context) ||
+                                (580 < constraints.maxWidth &&
+                                    constraints.maxWidth < 692)
+                            ? 2
+                            : 1,
+                        mainAxisSpacing: 50,
+                        crossAxisSpacing: 20,
+                        itemCount: 6,
+                        itemBuilder: (context, index) {
+                          debugPrint(listViewProduct.toString());
+                          return ProductCart(index: index);
+                        },
+                      ),
+                    )
+                  : const ListViewProductCard(),
               if (constraints.maxWidth < 890)
                 const SizedBox(
                   height: 20,

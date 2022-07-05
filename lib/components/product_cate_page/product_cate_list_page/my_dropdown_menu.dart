@@ -14,6 +14,14 @@ class MyDropDownMenu extends StatefulWidget {
 }
 
 class _MyDropDownMenuState extends State<MyDropDownMenu> {
+  dynamic selected;
+
+  @override
+  void initState() {
+    super.initState();
+    selected = widget.item[0];
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -45,10 +53,15 @@ class _MyDropDownMenuState extends State<MyDropDownMenu> {
                 DropdownButton(
                   isDense: true,
                   elevation: 0,
-                  value: widget.item[0],
+                  value: selected,
                   items: widget.item
                       .map(
                         (e) => DropdownMenuItem(
+                          onTap: () {
+                            setState(() {
+                              selected = e;
+                            });
+                          },
                           value: e,
                           child: Text(
                             e.toString(),
