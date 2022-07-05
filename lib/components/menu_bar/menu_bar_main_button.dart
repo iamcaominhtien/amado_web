@@ -28,6 +28,7 @@ class MenuBarMainButton extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 label.toUpperCase(),
+                textAlign: TextAlign.left,
                 style: TextStyle(
                   color: colorText,
                   fontSize: p1.maxWidth > 300 ? 17 : 15,
