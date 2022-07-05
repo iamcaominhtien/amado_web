@@ -16,7 +16,6 @@ class MenuBarMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (p0, p1) {
-        // debugPrint("Menubarmain: ${p1.maxWidth}");
         return HoverText(
           child: Padding(
             padding: EdgeInsets.only(

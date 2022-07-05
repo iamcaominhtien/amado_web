@@ -132,8 +132,18 @@ class _ProductCatePageState extends State<ProductCatePage> {
                     ],
                   ),
                 ),
+
+                //CateBrandMenuBar when max_width<890
+                if (constraints.maxWidth < 890)
+                  Container(
+                    color: const Color(0xFFFAFAFA),
+                    height: 1300,
+                    child: const CateBrandMenuBar(),
+                  ),
+
                 //Discount
                 const Discount(),
+
                 //FootPage
                 const FootPage(),
               ],

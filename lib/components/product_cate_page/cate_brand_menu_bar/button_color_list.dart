@@ -4,36 +4,39 @@ class ButtonColor extends StatelessWidget {
   const ButtonColor({
     Key? key,
     this.color,
+    required this.radius,
   }) : super(key: key);
   final dynamic color;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: color == Colors.white
-            ? Border.all(
-                color: Colors.grey, //color of border
-                width: 1, //width of border
-              )
-            : null,
-        shape: BoxShape.circle,
-      ),
-      child: Material(
-        color: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40.0),
-          side: BorderSide.none,
-        ),
-        child: MaterialButton(
-          padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40.0),
-            side: BorderSide.none,
-          ),
-          onPressed: () {},
-          child: CircleAvatar(
-            backgroundColor: color,
+    return Flexible(
+      child: Padding(
+        padding: const EdgeInsets.all(2),
+        child: SizedBox(
+          width: radius * 2,
+          height: radius * 2,
+          child: MaterialButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {},
+            shape: RoundedRectangleBorder(
+              // side: BorderSide.none,
+              borderRadius: BorderRadius.circular(radius),
+            ),
+            child: color != Colors.white
+                ? CircleAvatar(
+                    backgroundColor: color,
+                    radius: radius,
+                  )
+                : CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    radius: radius,
+                    child: CircleAvatar(
+                      backgroundColor: color,
+                      radius: radius - 1.5,
+                    ),
+                  ),
           ),
         ),
       ),
@@ -49,37 +52,53 @@ class ButtonColorList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: GridView.count(
-        primary: false,
-        crossAxisSpacing: 7,
-        mainAxisSpacing: 14,
-        crossAxisCount: 4,
-        physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          ButtonColor(
-            color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              ButtonColor(
+                radius: 17,
+                color: Colors.white,
+              ),
+              ButtonColor(
+                radius: 17,
+                color: Color(0xFF969696),
+              ),
+              ButtonColor(
+                radius: 17,
+                color: Color(0xFF030303),
+              ),
+              ButtonColor(
+                radius: 17,
+                color: Color(0xFF0315FF),
+              ),
+            ],
           ),
-          ButtonColor(
-            color: Color(0xFF969696),
+          const SizedBox(
+            height: 10,
           ),
-          ButtonColor(
-            color: Color(0xFF030303),
-          ),
-          ButtonColor(
-            color: Color(0xFF0315FF),
-          ),
-          ButtonColor(
-            color: Color(0xFFDC0647),
-          ),
-          ButtonColor(
-            color: Color(0xFFFFF56A),
-          ),
-          ButtonColor(
-            color: Color(0xFFF26E51),
-          ),
-          ButtonColor(
-            color: Color(0xFF9A8777),
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              ButtonColor(
+                radius: 17,
+                color: Color(0xFFDC0647),
+              ),
+              ButtonColor(
+                radius: 17,
+                color: Color(0xFFFFF56A),
+              ),
+              ButtonColor(
+                radius: 17,
+                color: Color(0xFFF26E51),
+              ),
+              ButtonColor(
+                radius: 17,
+                color: Color(0xFF9A8777),
+              ),
+            ],
+          )
         ],
       ),
     );
