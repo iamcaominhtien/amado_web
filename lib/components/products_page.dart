@@ -24,8 +24,14 @@ class _ProductsPageState extends State<ProductsPage> {
       color: Colors.white,
       padding: EdgeInsets.only(
         bottom: 20,
-        left: Responsive.isMobile(context) ? 15 : 0,
-        right: Responsive.isMobile(context) ? 15 : 0,
+        left: (Responsive.isMobile(context) ||
+                Responsive.isTabletSmallest(context))
+            ? 15
+            : 0,
+        right: (Responsive.isMobile(context) ||
+                Responsive.isTabletSmallest(context))
+            ? 15
+            : 0,
       ),
       child: MasonryGridView.count(
         crossAxisCount: Responsive.isDesktop(context)
