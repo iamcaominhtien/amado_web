@@ -47,9 +47,12 @@ class _HomePageState extends State<HomePage> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Image.asset(
-                        'assets/core_img/logo.png',
-                        height: 30,
+                      MaterialButton(
+                        onPressed: () => Navigator.pushNamed(context, '/'),
+                        child: Image.asset(
+                          'assets/core_img/logo.png',
+                          height: 30,
+                        ),
                       ),
                       IconButton(
                         onPressed: () {
