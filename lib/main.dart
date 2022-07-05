@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         ExamplePage.id: (context) => const ExamplePage(),
         ProductCatePage.id: (context) => const ProductCatePage(),
       },
-      // initialRoute: '/',
-      home: const HomePage(),
+      initialRoute: '/',
+      // home: const HomePage(),
     );
   }
 }

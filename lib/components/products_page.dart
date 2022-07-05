@@ -46,16 +46,16 @@ class _ProductsPageState extends State<ProductsPage> {
                 },
                 hoverChild: Stack(
                   children: [
-                    kIsWeb
-                        ? Image.asset('bg_img/${index + 1}.jpg',
-                            color: Colors.grey.withOpacity(0.8),
-                            colorBlendMode: BlendMode.modulate)
-                        : Image.asset('assets/bg_img/${index + 1}.jpg',
-                            color: Colors.grey.withOpacity(0.8),
-                            colorBlendMode: BlendMode.modulate),
-                    // Image.asset('bg_img/${index + 1}.jpg',
+                    // kIsWeb
+                    // ? Image.asset('bg_img/${index + 1}.jpg',
+                    //     color: Colors.grey.withOpacity(0.8),
+                    //     colorBlendMode: BlendMode.modulate)
+                    // : Image.asset('assets/bg_img/${index + 1}.jpg',
                     //     color: Colors.grey.withOpacity(0.8),
                     //     colorBlendMode: BlendMode.modulate),
+                    Image.asset('assets/bg_img/${index + 1}.jpg',
+                        color: Colors.grey.withOpacity(0.8),
+                        colorBlendMode: BlendMode.modulate),
                     Positioned(
                       top: 40,
                       left: 40,
@@ -97,9 +97,10 @@ class _ProductsPageState extends State<ProductsPage> {
                 ),
                 child: Stack(
                   children: [
-                    kIsWeb
-                        ? Image.asset('bg_img/${index + 1}.jpg')
-                        : Image.asset('assets/bg_img/${index + 1}.jpg'),
+                    // kIsWeb
+                    //     ? Image.asset('bg_img/${index + 1}.jpg')
+                    //     : Image.asset('assets/bg_img/${index + 1}.jpg'),
+                    Image.asset('assets/bg_img/${index + 1}.jpg'),
                     Positioned(
                       top: 40,
                       left: 40,

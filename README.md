@@ -1,6 +1,6 @@
 # amado_web
 
-A new Flutter project.
+https://iamcaominhtien.github.io/amado_web_hosting/
 
 ## Getting Started
 
